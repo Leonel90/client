@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
 
 @Component({
   selector: 'app-product',
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
-  constructor(private httpClient: HttpClient) {
+  constructor(private productHttpService: ProductHttpServiceService) {
 
   }
 
@@ -15,18 +16,21 @@ export class ProductComponent {
     //this.getProducts();
     //this.getProduct();
     //this.createProduct();
-    this.updateProduct();
+    //this.updateProduct();
   }
+
   getProducts() {
     const url = 'http://api.escuelajs.co/api/v1/products';
-    const response = this.httpClient.get(url).subscribe
+    const response = this.productHttpService.getAll().subscribe
       (response => { console.log(response) });
   }
+
   getProduct() {
     const url = 'http://api.escuelajs.co/api/v1/products/20';
-    const response = this.httpClient.get(url).subscribe
+    const response = this.productHttpService.getOne(2).subscribe
       (response => { console.log(response) });
   }
+
   createProduct() {
     const data = {
       title: "Zapatos",
@@ -36,9 +40,10 @@ export class ProductComponent {
       category: 1,
     }
     const url = 'http://api.escuelajs.co/api/v1/products';
-    this.httpClient.post(url,data).subscribe(response => { console.log(response) 
+    this.productHttpService.store(data).subscribe(response => { console.log(response)
     });
   }
+
   updateProduct() {
     const data = {
       title: "Camisetas",
@@ -46,7 +51,7 @@ export class ProductComponent {
       description: "Deportivos / Leonel Sangolquiza",
     }
     const url = 'http://api.escuelajs.co/api/v1/products/226';
-    this.httpClient.put(url,data).subscribe(response => { console.log(response) 
+    this.productHttpService.update(url,data).subscribe(response => { console.log(response)
     });
   }
 }
