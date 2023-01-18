@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductModel } from '../entities/product.model';
+import { Observable } from 'rxjs';
+import { CreateProductDto, ProductModel, UpdateProductDto } from '../entities/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,27 +13,27 @@ export class ProductHttpServiceService {
 
   }
 
-  getAll(){
+  getAll():Observable<ProductModel[]>{
     const url = `${this.API_UR}`;
-    return this.httpClient.get(url);
+    return this.httpClient.get<ProductModel[]>(url);
   }
 
-  getOne(id: number){
+  getOne(id: ProductModel):Observable<ProductModel>{
     const url = `${this.API_UR}/${id}`;
-    return this.httpClient.get(url);
+    return this.httpClient.get<ProductModel>(url);
   }
 
-  store(product:ProductModel){
+  store(product: CreateProductDto):Observable<ProductModel>{
     const url = `${this.API_UR}`;
-    return this.httpClient.post(url, product);
+    return this.httpClient.post<ProductModel>(url, product);
   }
 
-  update(id: number, product:ProductModel){
-    const url = `${this.API_UR}/${id}`;
-    return this.httpClient.put(url, product);
+  update(id: ProductModel, product: UpdateProductDto):Observable<ProductModel>{
+    const url = `${this.API_UR}/${id}`;/*Recuest hacemos la peticion*/
+    return this.httpClient.put<ProductModel>(url, product);/*Respons recibimos la respuesta*/
   }
 
-  destroy(id: number){
+  destroy(id: ProductModel){
     const url = `${this.API_UR}/${id}`;
     return this.httpClient.delete(url);
   }

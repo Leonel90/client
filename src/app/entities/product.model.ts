@@ -8,3 +8,11 @@ export interface ProductModel {
     images:string[];
     category:CategoryModel;
 }
+
+export interface CreateProductDto extends Omit<ProductModel, 'id' | 'category'> {
+  categortId: number;
+}
+
+export interface UpdateProductDto extends Partial<ProductModel>{/*Dto significa Object Transfer Data*/
+  categoryId?: number;/*La incognita significa q no es obligatorio*/
+}

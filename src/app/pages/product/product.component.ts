@@ -8,6 +8,7 @@ import { ProductHttpServiceService } from 'src/app/services/product-http-service
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent {
+
   constructor(private productHttpService: ProductHttpServiceService) {
 
   }
@@ -17,18 +18,23 @@ export class ProductComponent {
     //this.getProduct();
     //this.createProduct();
     //this.updateProduct();
+    //this.deleteProduct();
   }
 
   getProducts() {
     const url = 'http://api.escuelajs.co/api/v1/products';
-    const response = this.productHttpService.getAll().subscribe
-      (response => { console.log(response) });
+    this.productHttpService.getAll().subscribe
+      (response => {
+        console.log(response)
+      });
   }
 
   getProduct() {
     const url = 'http://api.escuelajs.co/api/v1/products/20';
-    const response = this.productHttpService.getOne(2).subscribe
-      (response => { console.log(response) });
+    this.productHttpService.getOne(2).subscribe
+      (response => {
+        console.log(response)
+      });
   }
 
   createProduct() {
@@ -40,7 +46,9 @@ export class ProductComponent {
       category: 1,
     }
     const url = 'http://api.escuelajs.co/api/v1/products';
-    this.productHttpService.store(data).subscribe(response => { console.log(response)
+    this.productHttpService.store(data).subscribe
+    (response => {
+      console.log(response)
     });
   }
 
