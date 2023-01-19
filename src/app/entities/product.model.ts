@@ -10,7 +10,7 @@ export interface ProductModel {
 }
 
 export interface CreateProductDto extends Omit<ProductModel, 'id' | 'category'> {
-  categortId: number;
+  categoryId: number;
 }
 
 export interface UpdateProductDto extends Partial<ProductModel>{/*Dto significa Object Transfer Data*/

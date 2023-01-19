@@ -18,9 +18,9 @@ export class ProductHttpServiceService {
     return this.httpClient.get<ProductModel[]>(url);
   }
 
-  getOne(id: ProductModel):Observable<ProductModel>{
+  getOne(id: ProductModel['id']):Observable<ProductModel[]>{
     const url = `${this.API_UR}/${id}`;
-    return this.httpClient.get<ProductModel>(url);
+    return this.httpClient.get<ProductModel[]>(url);
   }
 
   store(product: CreateProductDto):Observable<ProductModel>{
@@ -28,13 +28,13 @@ export class ProductHttpServiceService {
     return this.httpClient.post<ProductModel>(url, product);
   }
 
-  update(id: ProductModel, product: UpdateProductDto):Observable<ProductModel>{
+  update(id: ProductModel['id'], product: UpdateProductDto):Observable<ProductModel>{
     const url = `${this.API_UR}/${id}`;/*Recuest hacemos la peticion*/
     return this.httpClient.put<ProductModel>(url, product);/*Respons recibimos la respuesta*/
   }
 
-  destroy(id: ProductModel){
+  destroy(id: ProductModel['id']):Observable<ProductModel>{
     const url = `${this.API_UR}/${id}`;
-    return this.httpClient.delete(url);
+    return this.httpClient.delete<ProductModel>(url);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
 
@@ -7,8 +7,8 @@ import { ProductHttpServiceService } from 'src/app/services/product-http-service
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent {
-
+export class ProductComponent implements OnInit {
+  httpClient: any;
   constructor(private productHttpService: ProductHttpServiceService) {
 
   }
@@ -21,7 +21,7 @@ export class ProductComponent {
     //this.deleteProduct();
   }
 
-  getProducts() {
+  getProducts(): void {
     const url = 'http://api.escuelajs.co/api/v1/products';
     this.productHttpService.getAll().subscribe
       (response => {
@@ -43,13 +43,13 @@ export class ProductComponent {
       price: 25,
       description: "Deportivos / Leonel Sangolquiza",
       images: ['http://api.lorem.space/image/furniture?w=640&h=480&r=8718'],
-      category: 1,
+      categoryId: 1,
     }
     const url = 'http://api.escuelajs.co/api/v1/products';
     this.productHttpService.store(data).subscribe
-    (response => {
-      console.log(response)
-    });
+      (response => {
+        console.log(response)
+      });
   }
 
   updateProduct() {
@@ -57,9 +57,21 @@ export class ProductComponent {
       title: "Camisetas",
       price: 15,
       description: "Deportivos / Leonel Sangolquiza",
+      images: ['http://api.lorem.space/image/furniture?w=640&h=480&r=8718'],
+      categoryId: 1
     }
     const url = 'http://api.escuelajs.co/api/v1/products/226';
-    this.productHttpService.update(url,data).subscribe(response => { console.log(response)
+    this.productHttpService.update(30, data).subscribe(response => {
+      console.log(response)
     });
+  }
+
+  deleteProduct() {
+    const url = "https://api.escuelajs.co/api/v1/products/192";
+    this.productHttpService.destroy(61).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
   }
 }
