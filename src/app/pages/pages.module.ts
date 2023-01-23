@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
+import { UserComponent } from './user/user.component';
+import { RolComponent } from './rol/rol.component';
 
 
 
@@ -11,6 +13,8 @@ import { ProductComponent } from './product/product.component';
     DashboardComponent,
     CategoryComponent,
     ProductComponent,
+    UserComponent,
+    RolComponent,
   ],
   imports: [
     CommonModule
