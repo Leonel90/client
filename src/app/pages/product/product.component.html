@@ -1,5 +1,21 @@
 <h2>PRODUCTOS</h2>
-
+<div class="card">
+    <div class="card-header">
+        Producto
+    </div>
+    <div class="card-body">
+        <div class="mb-3">
+          <label for="title" class="form-label">Producto</label>
+          <input type="text" id="title"[value]="selectedProduct.title" class="form-control" >
+          <input type="text" id="title"[value]="selectedProduct.title" class="form-control" >
+          <input type="text" id="title"[value]="selectedProduct.title" class="form-control" >
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+<hr>
 <div class="table-responsive">
     <table class="table table-primary">
         <thead>
@@ -19,8 +35,9 @@
                 <td>{{product.price}}</td>
                 <td>{{product.description}}</td>
                 <td>{{product.category}}</td>
-                <td> <img src="{{product.images}}" alt="" width="150px" height="200px"></td>
-                <th><a href="" (click)="deleteProduct()">Eliminar</a> </th>
+                <td> <img src="{{product.images}}" alt="" width="150px" height="150px"></td>
+                <td><button href="" (click)="deleteProduct()">Eliminar</button></td>
+                <td><button href="" (click)="editProduct(product)">Eliminar</button></td>
             </tr>
         </tbody>
     </table>

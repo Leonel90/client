@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
-import { ProductModel } from 'src/app/entities/product.model';
+import { ProductModel, UpdateProductDto } from 'src/app/entities/product.model';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +10,7 @@ import { ProductModel } from 'src/app/entities/product.model';
 })
 export class ProductComponent implements OnInit {
   products: ProductModel[] = [];//inicalizamos el areglo
+  selectedProduct: UpdateProductDto = {};
   
   constructor(private productHttpService: ProductHttpServiceService) {
 
@@ -55,6 +56,10 @@ export class ProductComponent implements OnInit {
       });
   }
 
+  editProduct(product: ProductModel){
+    this.selectedProduct = product;
+  }
+
   updateProduct() {
     const data = {
       title: "Camisetas",
@@ -70,7 +75,7 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct() {
-    const url = "https://api.escuelajs.co/api/v1/products/192";
+    //const url = "https://api.escuelajs.co/api/v1/products/192";
     this.productHttpService.destroy(11).subscribe(
       response => {
         //this.products = this.products.filter(product => product.id != id);
