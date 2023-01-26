@@ -14,8 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     declarations: [
         AppComponent,
         PagesComponent,
-        NoFoundComponent,
-        NopagefoundComponent
+        NoFoundComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

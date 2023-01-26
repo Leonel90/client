@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductHttpServiceService } from 'src/app/services/product-http-service.service';
+import { ProductModel } from 'src/app/entities/product.model';
 
 @Component({
   selector: 'app-product',
@@ -8,17 +9,18 @@ import { ProductHttpServiceService } from 'src/app/services/product-http-service
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  httpClient: any;
+  products: ProductModel[] = [];
+  
   constructor(private productHttpService: ProductHttpServiceService) {
 
   }
 
   ngOnInit(): void {
-    //this.getProducts();
-    //this.getProduct();
-    //this.createProduct();
-    //this.updateProduct();
-    //this.deleteProduct();
+    this.getProducts();
+    this.getProduct();
+    this.createProduct();
+    this.updateProduct();
+    this.deleteProduct();
   }
 
   getProducts(): void {
