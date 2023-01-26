@@ -9,7 +9,7 @@ import { ProductModel } from 'src/app/entities/product.model';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  products: ProductModel[] = [];
+  products: ProductModel[] = [];//inicalizamos el areglo
   
   constructor(private productHttpService: ProductHttpServiceService) {
 
@@ -24,9 +24,10 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts(): void {
-    const url = 'http://api.escuelajs.co/api/v1/products';
+    //const url = 'http://api.escuelajs.co/api/v1/products';
     this.productHttpService.getAll().subscribe
       (response => {
+        this.products = response;//asignamos a la bariable todo lo del objeto
         console.log(response)
       });
   }
@@ -70,8 +71,9 @@ export class ProductComponent implements OnInit {
 
   deleteProduct() {
     const url = "https://api.escuelajs.co/api/v1/products/192";
-    this.productHttpService.destroy(61).subscribe(
+    this.productHttpService.destroy(11).subscribe(
       response => {
+        //this.products = this.products.filter(product => product.id != id);
         console.log(response);
       }
     );
